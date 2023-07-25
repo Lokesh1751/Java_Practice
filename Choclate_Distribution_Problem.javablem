@@ -1,0 +1,14 @@
+//User function Template for Java
+
+class Solution
+{
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
+       long mindiff=Long.MAX_VALUE;
+       Collections.sort(a);
+       for(int i=0;i+m-1<n;i++){
+           mindiff=Math.min((a.get(i+m-1)-a.get(i)),mindiff);
+       }
+       return mindiff;
+    }
+}
