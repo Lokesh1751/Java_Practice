@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class longestsub {
+    public static void main(String[] args) {
+        int arr[] = { 2, 7, 6, 1, 4, 5 };
+        int sum = 0;
+        int ini = -1;
+        int fin = -1;
+        int maxi = Integer.MIN_VALUE;
+        ArrayList<Integer> al = new ArrayList<>();
+        int k = 3;
+        for (int i = 0; i < arr.length; i++) {
+            sum = 0;
+            for (int j = i; j < arr.length; j++) {
+                sum += arr[j];
+                if (sum % k == 0) {
+                    maxi = Math.max(maxi, j - i + 1);
+                }
+            }
+        }
+
+        System.out.println(maxi);
+    }
+}
+by O(N2)
+//GFG 
