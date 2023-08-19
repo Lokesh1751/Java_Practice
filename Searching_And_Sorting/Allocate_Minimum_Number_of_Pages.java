@@ -48,3 +48,4 @@ class Solution
 
 //GFG
 //CodeStudio=>Books Allocation
+//Binary Search
