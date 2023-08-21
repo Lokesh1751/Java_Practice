@@ -14,7 +14,7 @@ for(int i=0;i<9;i++){
 	if(board[i][col]==val){
 		return false;
 	}
-	////3*3 matrix check
+	////3*3 matrix check it is a formula to check the element of the 3*3 matrix one by one
 	if(board[3*(row/3)+i/3][3*(col/3)+i%3]==val){
 		return false;
 	}
@@ -50,3 +50,5 @@ return true;
         
 	}
 }
+
+//CodeStudio
