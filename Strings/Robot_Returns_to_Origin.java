@@ -1,3 +1,4 @@
+//APPROACH 1
 class Solution {
     public boolean judgeCircle(String moves) {
         int arr[][]=new int[60][60];
@@ -52,6 +53,37 @@ class Solution {
                     return true;
                 }
                 return false;
+    }
+}
+
+
+
+
+//APPROACH 2
+class Solution {
+    public boolean judgeCircle(String moves) {
+        int vertical=0;
+        int horizontal=0;
+        char arr[]=moves.toCharArray();
+        for(int i=0;i<arr.length;i++){
+            char ch=arr[i];
+            if(ch=='U'){
+                vertical--;
+            }
+             if(ch=='D'){
+                vertical++;
+            }
+             if(ch=='L'){
+                horizontal--;
+            }
+             if(ch=='R'){
+                horizontal++;
+            }
+        }
+        if(vertical==0 && horizontal==0){
+            return true;
+        }
+        return false;
     }
 }
 //LEETCODE
