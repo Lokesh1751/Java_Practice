@@ -31,4 +31,48 @@ class Tree {
         return sol;
     }
 }
+
+//Sol Using Level Order
+class Tree {
+    // Helper function to perform DFS and update the left view nodes
+    public List<List<Integer>> levelOrder(Node root) {
+        Queue<Node> q=new LinkedList<>();
+        List<Integer> ans=new ArrayList<>();
+        List<List<Integer>> sol=new ArrayList<>();
+        if(root==null){
+            return sol;
+        }
+        q.add(root);
+        q.add(null);
+        while(!q.isEmpty()){
+            Node curr=q.poll();
+            if(curr==null){
+                if(!q.isEmpty()){
+                    q.add(null);
+                }
+                 sol.add(ans);
+                ans=new ArrayList<>();
+            }
+            else{
+               ans.add(curr.data);
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                 if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+        }
+        return sol;
+    }
+    public ArrayList<Integer> leftView(Node root) {
+                List<List<Integer>> ans=levelOrder(root);
+        ArrayList<Integer> sol=new ArrayList<>();
+        for(List<Integer> i:ans){
+            sol.add(i.get(0));
+        }
+        return sol;
+
+    }
+}
 //GFG
