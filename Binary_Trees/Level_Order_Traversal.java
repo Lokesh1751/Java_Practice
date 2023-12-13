@@ -74,5 +74,50 @@ class Solution {
         return sol;
     }
 }
+
+//Using Map
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public  void solve(TreeNode root,int l,HashMap<Integer,List<Integer>> hm){
+if(root==null){
+    return;
+}
+if (!hm.containsKey(l)) {
+    List<Integer> al = new ArrayList<>();
+    al.add(root.val);
+    hm.put(l, al);
+}
+else{
+hm.get(l).add(root.val);
+}
+solve(root.left,l+1,hm);
+solve(root.right,l+1,hm);
+    }
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        HashMap<Integer,List<Integer>> hm=new HashMap<>();
+        solve(root,1,hm);
+        System.out.print(hm);
+        List<List<Integer>> ans=new ArrayList<>();
+        for(Map.Entry<Integer,List<Integer>> h:hm.entrySet()){
+         ans.add(h.getValue());
+        }
+        return ans;
+    }
+}
+
 //LEETCODE
 
