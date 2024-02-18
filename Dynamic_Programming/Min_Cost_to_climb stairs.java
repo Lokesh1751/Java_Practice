@@ -37,13 +37,32 @@ for(int i=2;i<n;i++){
 }
 return Math.min(dp[n-1],dp[n-2]);
     }
+
+  //By using Space optimization
+    public int simplesolution(int []cost){
+
+        int prev1=cost[0];
+        int prev2=cost[1];
+        int ans=Integer.MAX_VALUE;
+        for(int i=2;i<cost.length;i++){
+             int curr=cost[i]+Math.min(prev1,prev2);
+             prev1=prev2;
+             prev2=curr;
+        }
+        return Math.min(prev1,prev2);
+    }
     public int minCostClimbingStairs(int[] cost) {
         int n=cost.length;
-        int dp[]=new int[n+1];
-        Arrays.fill(dp,-1);
-        // int ans=Math.min(solve(cost,n-1),solve(cost,n-2));
+        // // int dp[]=new int[n+1];
+        // // Arrays.fill(dp,-1);
+        // // // int ans=Math.min(solve(cost,n-1),solve(cost,n-2));
+        // // // return ans;
+        // // int ans=Math.min(solvememo(cost,n-1,dp),solvememo(cost,n-2,dp));
+        // // return ans;
+        // int ans=solvetab(cost,n);
         // return ans;
-        int ans=Math.min(solvememo(cost,n-1,dp),solvememo(cost,n-2,dp));
+
+        int ans=simplesolution(cost);
         return ans;
     }
 }
