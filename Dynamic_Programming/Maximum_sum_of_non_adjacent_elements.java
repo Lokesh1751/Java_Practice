@@ -23,6 +23,18 @@ public class Solution {
 		 dp[i]= Math.max(inc,exc);
 		 return dp[i];
 	}
+
+	public static int solvetab(ArrayList<Integer> nums){
+		int dp[]=new int[nums.size()];
+		Arrays.fill(dp,-1);
+		dp[0]=nums.get(0);
+		for(int i=1;i<nums.size();i++){
+			 int inc = (i - 2 >= 0 ? dp[i - 2] : 0) + nums.get(i);
+			int exc=dp[i-1]+0;
+			dp[i]=Math.max(inc, exc);
+		}
+		return dp[nums.size()-1];
+	}
 	public static int maximumNonAdjacentSum(ArrayList<Integer> nums) {
 		int dp[]=new int[nums.size()+1];
 		Arrays.fill(dp,-1);
