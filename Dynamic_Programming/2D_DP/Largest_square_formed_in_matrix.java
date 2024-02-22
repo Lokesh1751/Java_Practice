@@ -1,3 +1,4 @@
+
 class Solution{
     static int maxi=0;
     public static int solve(int[][] mat,int i,int j){
@@ -36,6 +37,60 @@ class Solution{
             return 0;
         }
     }
+    public static int solvetab(int[][] mat){
+         int row=mat.length;
+        int col=mat[0].length;
+         int dp[][]=new int[row+1][col+1];
+        for(int r[]:dp){
+            Arrays.fill(r,0);
+        }
+        for(int i=row-1;i>=0;i--){
+            for(int j=col-1;j>=0;j--){
+                
+                
+        int right=dp[i][j+1];
+        int diagnal=dp[i+1][j+1];
+        int down=dp[i+1][j];
+        if(mat[i][j]==1){
+           dp[i][j] =1+Math.min(right,Math.min(diagnal,down));
+            maxi=Math.max(maxi,dp[i][j]);
+        }
+        else{
+            dp[i][j]= 0;
+        }
+                
+            }
+        }
+        return -1;
+    }
+    
+     public static int solveso(int[][] mat){
+         int row=mat.length;
+        int col=mat[0].length;
+         int curr[]=new int[col+1];
+         int next[]=new int[col+1];
+         Arrays.fill(curr,0);
+         Arrays.fill(next,0);
+        for(int i=row-1;i>=0;i--){
+            for(int j=col-1;j>=0;j--){
+                
+                
+        int right=curr[j+1];
+        int diagnal=next[j+1];
+        int down=next[j];
+        if(mat[i][j]==1){
+           curr[j] =1+Math.min(right,Math.min(diagnal,down));
+            maxi=Math.max(maxi,curr[j]);
+        }
+        else{
+            curr[j]= 0;
+        }
+                
+            }
+            next = Arrays.copyOf(curr, curr.length);
+        }
+        return 0;
+    }
     static int maxSquare(int n, int m, int mat[][]){
         maxi=0;
         //  solve(mat,0,0);
@@ -43,8 +98,11 @@ class Solution{
         for(int row[]:dp){
             Arrays.fill(row,-1);
         }
-        solvemem(mat,0,0,dp);
-         return maxi;
+        // solvemem(mat,0,0,dp);
+        // solvetab(mat);
+        //  return maxi;
+        solveso(mat);
+        return maxi;
     }
 }
 
