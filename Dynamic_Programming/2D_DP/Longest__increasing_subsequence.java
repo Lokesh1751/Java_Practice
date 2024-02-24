@@ -52,7 +52,26 @@ public static int helpertab(int arr[]){
       }
       return dp[0][0];
     }
+public static int helperSO(int arr[]){
+                int size=arr.length;
+      int currr[]=new int[size+1];
+      int next[]=new int[size+1];
+      for(int curr=size-1;curr>=0;curr--){
+          for(int prev=curr-1;prev>=-1;prev--){
 
+ int inc=0;
+    if(prev==-1 || arr[curr]>arr[prev]){
+        inc=1+next[curr+1];
+    }
+       
+       int exc=next[prev+1];
+       currr[prev+1]= Math.max(inc,exc);
+
+          }
+          next=Arrays.copyOf(currr,currr.length);
+      }
+      return next[0];
+    }
     public int lengthOfLIS(int[] nums) {
         int size=nums.length;
         int dp[][]=new int[size][size+1];
