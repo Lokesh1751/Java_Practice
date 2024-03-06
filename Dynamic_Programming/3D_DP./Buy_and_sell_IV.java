@@ -115,4 +115,54 @@ public int helperSO(int[] prices,int k) {
         return helperSO(prices,k);
     }
 }
+
+
+
+//USING OPERATION NUMBER
+class Solution {
+    public int helper(int idx,int operationnumber,int prices[],int k){
+        if(idx==prices.length){
+            return 0;
+        }
+        if(operationnumber==2*k){
+            return 0;
+        }
+        int profit=0;
+        if(operationnumber%2==0){
+             profit= Math.max(-prices[idx]+helper(idx+1,operationnumber+1,prices,k),0+ helper(idx+1,operationnumber,prices,k));
+        }
+        else{
+profit= Math.max(prices[idx]+helper(idx+1,operationnumber+1,prices,k),0+ helper(idx+1,operationnumber,prices,k));
+        }
+        return profit;
+    }
+
+     public int helpermemo(int idx,int operationnumber,int prices[],int k,int dp[][]){
+        if(idx==prices.length){
+            return 0;
+        }
+        if(operationnumber==2*k){
+            return 0;
+        }
+        if(dp[idx][operationnumber]!=-1){
+            return dp[idx][operationnumber];
+        }
+        int profit=0;
+        if(operationnumber%2==0){
+             profit= Math.max(-prices[idx]+helpermemo(idx+1,operationnumber+1,prices,k,dp),0+ helpermemo(idx+1,operationnumber,prices,k,dp));
+        }
+        else{
+profit= Math.max(prices[idx]+helpermemo(idx+1,operationnumber+1,prices,k,dp),0+ helpermemo(idx+1,operationnumber,prices,k,dp));
+        }
+      return  dp[idx][operationnumber]= profit;
+    }
+    public int maxProfit(int k, int[] prices) {
+        int dp[][]=new int[prices.length+1][2*k];
+        for(int row[]:dp){
+            Arrays.fill(row,-1);
+        }
+        return helpermemo(0,0,prices,k,dp);
+    }
+}
+
 //LEETCODE
